@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.0.0
+%define		kdeplasmaver	6.0.1
 %define		qtver		5.15.2
 %define		kpname		plymouth-kcm
 
 Summary:	KDE Config Module for Plyouth
 Name:		kp6-%{kpname}
-Version:	6.0.0
+Version:	6.0.1
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	e377ca58ca8089ce4e4c26c03e85b4f1
+# Source0-md5:	c0c0d96127629d64c6d8c136e9d6a09f
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= 5.15.0
 BuildRequires:	Qt6Gui-devel >= 5.15.0
