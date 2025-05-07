@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	6.3.4
+%define		kdeplasmaver	6.3.5
 %define		qtver		5.15.2
 %define		kpname		plymouth-kcm
 
 Summary:	KDE Config Module for Plyouth
 Name:		kp6-%{kpname}
-Version:	6.3.4
+Version:	6.3.5
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	33e85137db12bf9c7d927f1cfb08ec48
+# Source0-md5:	8cf07a8db9a9a757abf8988c6f7b2c40
 URL:		http://www.kde.org/
 BuildRequires:	Qt6Core-devel >= 5.15.0
 BuildRequires:	Qt6Gui-devel >= 5.15.0
@@ -32,7 +32,8 @@ BuildRequires:	ninja
 BuildRequires:	plymouth-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
-Obsoletes:	kp5-%{kpname} < %{version}
+Requires(post,postun):	desktop-file-utils
+Obsoletes:	kp5-%{kpname} < 6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt6dir		%{_libdir}/qt6
@@ -64,8 +65,13 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+%update_desktop_database_post
+
+%postun
+/sbin/ldconfig
+%update_desktop_database_postun
 
 %files -f %{kpname}.lang
 %defattr(644,root,root,755)
