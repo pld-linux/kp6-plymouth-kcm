@@ -42,6 +42,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 KDE Config Module for Plymouth.
 
+%description -l pl.UTF-8
+Moduł konfiguracyjny KDE do Plymouth.
+
 %prep
 %setup -q -n %{kpname}-%{version}
 
